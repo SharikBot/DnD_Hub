@@ -1,0 +1,172 @@
+<UserControl x:Class="DnDCharacterManager.Desktop.Views.CharacterSheetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,16">
+            <Button Content="← Назад" Command="{Binding GoBackCommand}"
+                    Style="{StaticResource MaterialDesignFlatButton}" Margin="0,0,8,0" />
+            <Button Content="Сохранить" Command="{Binding SaveSheetCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}" Margin="0,0,8,0" />
+            <Button Content="Предпросмотр PDF" Command="{Binding PreviewPdfCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}" Margin="0,0,8,0" />
+            <Button Content="Скачать PDF" Command="{Binding DownloadPdfCommand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,16,0" />
+            <TextBlock Text="{Binding EditableName}" Style="{StaticResource FantasyPageTitle}" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                    <Border Style="{StaticResource FantasyCardBorder}" Margin="0,0,0,8">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Character.PortraitPath}" TextWrapping="Wrap" Margin="0,0,0,8"
+                                       Foreground="{StaticResource FantasyTextMutedBrush}" />
+                            <TextBlock Text="Основное" FontWeight="SemiBold"
+                                       Foreground="{StaticResource FantasyAccentBrush}" Margin="0,0,0,8" />
+                            <TextBlock><Run Text="Раса: " /><Run Text="{Binding Character.RaceName}" /></TextBlock>
+                            <TextBlock Margin="0,4,0,0"><Run Text="Класс: " /><Run Text="{Binding Character.ClassName}" /></TextBlock>
+                            <TextBlock Margin="0,4,0,0"><Run Text="Предыстория: " /><Run Text="{Binding Character.BackgroundName}" /></TextBlock>
+                            <TextBlock Margin="0,4,0,0"><Run Text="Мировоззрение: " /><Run Text="{Binding AlignmentDisplay}" /></TextBlock>
+                            <TextBlock Margin="0,4,0,0"><Run Text="Уровень: " /><Run Text="{Binding Character.Level}" /></TextBlock>
+                            <TextBlock Margin="0,4,0,0"><Run Text="Бонус мастерства: +" /><Run Text="{Binding Character.ProficiencyBonus}" /></TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource FantasyCardBorder}">
+                        <StackPanel>
+                            <TextBlock Text="Бой" FontWeight="SemiBold"
+                                       Foreground="{StaticResource FantasyAccentBrush}" Margin="0,0,0,8" />
+                            <TextBlock>
+                                <Run Text="КБ: " /><Run Text="{Binding Character.ArmorClass}" />
+                                <Run Text="  |  Инициатива: +" /><Run Text="{Binding Character.InitiativeBonus}" />
+                            </TextBlock>
+                            <TextBlock Margin="0,4,0,0">
+                                <Run Text="Скорость: " /><Run Text="{Binding Character.Speed}" /><Run Text=" фт." />
+                            </TextBlock>
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                                <TextBlock Text="Хиты: " VerticalAlignment="Center" />
+                                <Button Content="-" Command="{Binding AdjustHpCommand}" CommandParameter="-1"
+                                        Style="{StaticResource MaterialDesignIconButton}" />
+                                <TextBlock Text="{Binding EditableCurrentHp}" Width="40"
+                                           TextAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+                                <TextBlock VerticalAlignment="Center" Foreground="{StaticResource FantasyTextMutedBrush}">
+                                    <Run Text="/" /><Run Text="{Binding Character.MaxHitPoints}" />
+                                </TextBlock>
+                                <Button Content="+" Command="{Binding AdjustHpCommand}" CommandParameter="1"
+                                        Style="{StaticResource MaterialDesignIconButton}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <Border Style="{StaticResource FantasyCardBorder}" Margin="0,0,0,8">
+                        <StackPanel>
+                            <TextBlock Text="Биография" FontWeight="SemiBold"
+                                       Foreground="{StaticResource FantasyAccentBrush}" Margin="0,0,0,8" />
+                            <TextBox Text="{Binding EditableBackstory, UpdateSourceTrigger=PropertyChanged}"
+                                     AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource FantasyCardBorder}" Margin="0,0,0,8">
+                        <StackPanel>
+                            <TextBlock Text="Характеристики" FontWeight="SemiBold"
+                                       Foreground="{StaticResource FantasyAccentBrush}" Margin="0,0,0,8" />
+                            <ItemsControl ItemsSource="{Binding AbilityScoreDisplays}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120" />
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="50" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding DisplayName}" />
+                                            <TextBlock Grid.Column="1" Text="{Binding Score}" FontWeight="Bold" HorizontalAlignment="Center" />
+                                            <TextBlock Grid.Column="2" HorizontalAlignment="Center" Foreground="{StaticResource FantasyAccentBrush}">
+                                                <Run Text="{Binding Modifier, StringFormat={}{0:+0;-0;0}}" />
+                                            </TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource FantasyCardBorder}" Margin="0,0,0,8">
+                        <StackPanel>
+                            <TextBlock Text="Навыки" FontWeight="SemiBold"
+                                       Foreground="{StaticResource FantasyAccentBrush}" Margin="0,0,0,8" />
+                            <ItemsControl ItemsSource="{Binding Character.Skills}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Margin="0,2">
+                                            <Run Text="{Binding Name}" />
+                                            <Run Text="  " />
+                                            <Run Text="{Binding Modifier, StringFormat={}{0:+0;-0;0}}" FontWeight="Bold" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource FantasyCardBorder}" Margin="0,0,0,8">
+                        <StackPanel>
+                            <TextBlock Text="Заклинания" FontWeight="SemiBold"
+                                       Foreground="{StaticResource FantasyAccentBrush}" Margin="0,0,0,8" />
+                            <ItemsControl ItemsSource="{Binding Character.Spells}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Margin="0,2">
+                                            <Run Text="{Binding Name}" FontWeight="SemiBold" />
+                                            <Run Text=" — ур. " /><Run Text="{Binding Level}" />
+                                            <Run Text=", " /><Run Text="{Binding School}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource FantasyCardBorder}">
+                        <StackPanel>
+                            <TextBlock Text="Инвентарь" FontWeight="SemiBold"
+                                       Foreground="{StaticResource FantasyAccentBrush}" Margin="0,0,0,8" />
+                            <ItemsControl ItemsSource="{Binding Character.InventoryItems}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Margin="0,2">
+                                            <Run Text="{Binding Name}" />
+                                            <Run Text=" ×" /><Run Text="{Binding Quantity}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <ProgressBar Grid.RowSpan="2" IsIndeterminate="True" Height="4" VerticalAlignment="Top"
+                     Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}" />
+    </Grid>
+</UserControl>

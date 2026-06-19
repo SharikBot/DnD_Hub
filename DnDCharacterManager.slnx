@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DnDCharacterManager.Api/DnDCharacterManager.Api.csproj" />
+    <Project Path="src/DnDCharacterManager.Application/DnDCharacterManager.Application.csproj" />
+    <Project Path="src/DnDCharacterManager.Core/DnDCharacterManager.Core.csproj" />
+    <Project Path="src/DnDCharacterManager.Desktop/DnDCharacterManager.Desktop.csproj" />
+    <Project Path="src/DnDCharacterManager.Infrastructure/DnDCharacterManager.Infrastructure.csproj" />
+    <Project Path="src/DnDCharacterManager.Launcher/DnDCharacterManager.Launcher.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DnDCharacterManager.Tests/DnDCharacterManager.Tests.csproj" />
+  </Folder>
+</Solution>

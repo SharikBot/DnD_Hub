@@ -1,0 +1,55 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Dark fantasy palette: deep brown, bronze, gold, parchment -->
+    <Color x:Key="FantasyBackgroundDark">#FF1A1208</Color>
+    <Color x:Key="FantasyBackgroundMid">#FF2D1F0F</Color>
+    <Color x:Key="FantasySurface">#FF3D2B16</Color>
+    <Color x:Key="FantasyBronze">#FFB8860B</Color>
+    <Color x:Key="FantasyGold">#FFC9A227</Color>
+    <Color x:Key="FantasyGoldLight">#FFE8C547</Color>
+    <Color x:Key="FantasyParchment">#FFF4E4BC</Color>
+    <Color x:Key="FantasyParchmentDim">#FFD4C49C</Color>
+    <Color x:Key="FantasyTextPrimary">#FFF4E4BC</Color>
+    <Color x:Key="FantasyTextSecondary">#FFB8A88A</Color>
+
+    <SolidColorBrush x:Key="FantasyBackgroundBrush" Color="{StaticResource FantasyBackgroundDark}" />
+    <SolidColorBrush x:Key="FantasySurfaceBrush" Color="{StaticResource FantasySurface}" />
+    <SolidColorBrush x:Key="FantasySidebarBrush" Color="{StaticResource FantasyBackgroundMid}" />
+    <SolidColorBrush x:Key="FantasyAccentBrush" Color="{StaticResource FantasyGold}" />
+    <SolidColorBrush x:Key="FantasyAccentLightBrush" Color="{StaticResource FantasyGoldLight}" />
+    <SolidColorBrush x:Key="FantasyBronzeBrush" Color="{StaticResource FantasyBronze}" />
+    <SolidColorBrush x:Key="FantasyParchmentBrush" Color="{StaticResource FantasyParchment}" />
+    <SolidColorBrush x:Key="FantasyTextBrush" Color="{StaticResource FantasyTextPrimary}" />
+    <SolidColorBrush x:Key="FantasyTextMutedBrush" Color="{StaticResource FantasyTextSecondary}" />
+
+    <Style x:Key="FantasyPageTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource FantasyAccentLightBrush}" />
+        <Setter Property="Margin" Value="0,0,0,16" />
+    </Style>
+
+    <Style x:Key="FantasySubtitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{StaticResource FantasyTextMutedBrush}" />
+        <Setter Property="Margin" Value="0,0,0,12" />
+    </Style>
+
+    <Style x:Key="FantasyCardBorder" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource FantasySurfaceBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource FantasyBronzeBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="Margin" Value="4" />
+    </Style>
+
+    <Style x:Key="FantasySidebarButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="Margin" Value="4,2" />
+        <Setter Property="Foreground" Value="{StaticResource FantasyParchmentBrush}" />
+    </Style>
+
+</ResourceDictionary>

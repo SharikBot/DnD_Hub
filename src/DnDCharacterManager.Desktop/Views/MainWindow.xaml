@@ -1,0 +1,122 @@
+<Window x:Class="DnDCharacterManager.Desktop.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:DnDCharacterManager.Desktop.ViewModels"
+        xmlns:views="clr-namespace:DnDCharacterManager.Desktop.Views"
+        Title="{Binding WindowTitle}"
+        Height="800" Width="1280"
+        MinHeight="600" MinWidth="900"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource FantasyBackgroundBrush}"
+        TextElement.Foreground="{StaticResource FantasyTextBrush}"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        TextElement.FontSize="14">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:CharacterCreatorViewModel}">
+            <views:CharacterCreatorView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CharactersListViewModel}">
+            <views:CharactersListView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:BestiaryViewModel}">
+            <views:BestiaryView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RulebookViewModel}">
+            <views:RulebookView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AiGeneratorViewModel}">
+            <views:AiGeneratorView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+            <views:SettingsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CharacterSheetViewModel}">
+            <views:CharacterSheetView />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <Border Grid.Column="0"
+                Background="{StaticResource FantasySidebarBrush}"
+                BorderBrush="{StaticResource FantasyBronzeBrush}"
+                BorderThickness="0,0,1,0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="16,24,16,16">
+                    <materialDesign:PackIcon Kind="DiceD20"
+                                             Width="48" Height="48"
+                                             HorizontalAlignment="Center"
+                                             Foreground="{StaticResource FantasyAccentBrush}" />
+                    <TextBlock Text="DnD Manager"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Foreground="{StaticResource FantasyAccentLightBrush}"
+                               Margin="0,8,0,0" />
+                    <TextBlock Text="Менеджер персонажей"
+                               FontSize="12"
+                               HorizontalAlignment="Center"
+                               Foreground="{StaticResource FantasyTextMutedBrush}" />
+                </StackPanel>
+
+                <ListBox ItemsSource="{Binding MenuItems}"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Margin="8,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource FantasySidebarButton}"
+                                    Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                    CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="{Binding Icon}"
+                                                             Width="22" Height="22"
+                                                             VerticalAlignment="Center"
+                                                             Margin="0,0,12,0" />
+                                    <TextBlock Text="{Binding Title}"
+                                               VerticalAlignment="Center"
+                                               FontSize="14" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                    <Setter Property="Background" Value="#33C9A227" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <!-- Content area -->
+        <Border Grid.Column="1" Padding="24">
+            <Grid>
+                <ContentControl Content="{Binding CurrentViewModel}" />
+                <materialDesign:Snackbar MessageQueue="{Binding MessageQueue}"
+                                         VerticalAlignment="Bottom"
+                                         HorizontalAlignment="Stretch" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

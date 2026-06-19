@@ -1,0 +1,59 @@
+<UserControl x:Class="DnDCharacterManager.Desktop.Views.AiGeneratorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Генератор AI" Style="{StaticResource FantasyPageTitle}" />
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,16">
+            <ComboBox ItemsSource="{Binding ContentTypeOptions}"
+                      SelectedItem="{Binding SelectedContentTypeOption}"
+                      DisplayMemberPath="Label"
+                      Width="280" Margin="0,0,0,12"
+                      materialDesign:HintAssist.Hint="Тип контента" />
+            <TextBox Text="{Binding Prompt, UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="True" TextWrapping="Wrap"
+                     MinHeight="100" MaxHeight="160"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="Опишите, что нужно сгенерировать..." />
+            <Button Content="Сгенерировать" Command="{Binding GenerateCommand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Margin="0,12,0,0" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <Border Grid.Row="2" Style="{StaticResource FantasyCardBorder}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <TextBlock Text="{Binding GeneratedText}" TextWrapping="Wrap"
+                           FontSize="15" LineHeight="24" />
+            </ScrollViewer>
+        </Border>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,8,0,0">
+            <TextBlock Text="{Binding StatusMessage}" Foreground="{StaticResource FantasyTextMutedBrush}" />
+            <TextBlock Margin="16,0,0,0" Foreground="{StaticResource FantasyTextMutedBrush}">
+                <Run Text="Токенов: " /><Run Text="{Binding TokensUsed}" />
+            </TextBlock>
+        </StackPanel>
+
+        <Grid Grid.RowSpan="4" Background="#80000000"
+              Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ProgressBar IsIndeterminate="True" Width="200" Height="4" />
+                <TextBlock Text="Генерация через Gemini AI..." Margin="0,12,0,0"
+                           Foreground="{StaticResource FantasyParchmentBrush}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

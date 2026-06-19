@@ -1,0 +1,14 @@
+* text=auto eol=lf
+
+*.cs     text diff=csharp
+*.csproj text
+*.sln    text
+*.xaml   text
+*.json   text
+*.md     text
+*.yml    text
+
+*.png    binary
+*.jpg    binary
+*.ico    binary
+*.pdf    binary

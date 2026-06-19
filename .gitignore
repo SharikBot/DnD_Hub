@@ -1,0 +1,100 @@
+## Build output directories
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.sln.docstates
+
+## Rider / JetBrains
+.idea/
+*.sln.iml
+
+## VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+## NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## .NET
+*.dll
+*.exe
+*.pdb
+*.cache
+*.mdb
+*.opendb
+*.VC.db
+*.pidb
+*.svclog
+*.scc
+*.DotSettings.user
+
+## Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+TestResults/
+
+## Publish
+publish/
+*.pubxml
+*.publishproj
+
+## User-specific / secrets
+appsettings.*.local.json
+appsettings.Local.json
+secrets.json
+*.pfx
+*.key
+.env
+.env.*
+
+## PostgreSQL / database dumps
+*.sql
+*.dump
+*.backup
+pgdata/
+postgres-data/
+*.db
+*.db-shm
+*.db-wal
+
+## OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+## WPF / generated
+*_wpftmp.csproj
+
+## Misc
+*.log
+*.tmp
+*.temp
+~$*
+
+## Installer build output
+installer/output/
+release/
