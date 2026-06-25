@@ -33,7 +33,7 @@
                       Width="140" Margin="0,0,8,0"
                       materialDesign:HintAssist.Hint="Сортировка" />
             <Button Content="Найти" Command="{Binding SearchCommand}"
-                    Style="{StaticResource MaterialDesignRaisedButton}" />
+                    Style="{StaticResource FantasyRaisedButton}" />
         </StackPanel>
 
         <ListBox Grid.Row="2" Grid.Column="0"

@@ -6,10 +6,7 @@
     <DataTemplate x:Key="SelectionCardTemplate" DataType="{x:Type models:SelectionCardItem}">
         <Button Command="{Binding DataContext.SelectCardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 CommandParameter="{Binding}"
-                Padding="0"
-                Background="Transparent"
-                BorderThickness="0"
-                Cursor="Hand">
+                Style="{StaticResource FantasySelectionCardButton}">
             <Border Background="{StaticResource FantasySurfaceBrush}"
                     BorderBrush="{StaticResource FantasyBronzeBrush}"
                     BorderThickness="1"

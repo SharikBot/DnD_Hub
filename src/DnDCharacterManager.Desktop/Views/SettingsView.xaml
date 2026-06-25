@@ -21,9 +21,9 @@
 
         <StackPanel Orientation="Horizontal">
             <Button Content="Сохранить" Command="{Binding SaveCommand}"
-                    Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,8,0" />
+                    Style="{StaticResource FantasyRaisedButton}" Margin="0,0,8,0" />
             <Button Content="По умолчанию" Command="{Binding ResetToDefaultsCommand}"
-                    Style="{StaticResource MaterialDesignOutlinedButton}" />
+                    Style="{StaticResource FantasyOutlinedButton}" />
         </StackPanel>
 
         <TextBlock Text="{Binding StatusMessage}" Margin="0,12,0,0"

@@ -9,8 +9,8 @@
 ## Быстрый старт (локальная разработка)
 
 ```bash
-git clone https://github.com/SharikBot/DnDCharacterManager.git
-cd DnDCharacterManager
+git clone https://github.com/SharikBot/DnD_Hub.git
+cd DnD_Hub
 
 # Терминал 1 — API (SQLite, без PostgreSQL)
 dotnet run --project src/DnDCharacterManager.Api --launch-profile http
@@ -180,7 +180,7 @@ chmod +x push-github.sh
 
 ```bash
 export GITHUB_USER=SharikBot
-export REPO_NAME=DnDCharacterManager
+export REPO_NAME=DnD_Hub
 ./push-github.sh
 ```
 

@@ -1,5 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <!-- Dark fantasy palette: deep brown, bronze, gold, parchment -->
     <Color x:Key="FantasyBackgroundDark">#FF1A1208</Color>
@@ -45,11 +46,66 @@
         <Setter Property="Margin" Value="4" />
     </Style>
 
-    <Style x:Key="FantasySidebarButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+    <!-- Кнопки: увеличенные отступы и MinHeight, чтобы текст и тень не обрезались -->
+    <Style x:Key="FantasyRaisedButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="MinHeight" Value="40" />
+        <Setter Property="Padding" Value="20,10" />
+        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="4" />
+    </Style>
+
+    <Style x:Key="FantasyOutlinedButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
+        <Setter Property="MinHeight" Value="40" />
+        <Setter Property="Padding" Value="20,10" />
+        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="4" />
+    </Style>
+
+    <Style x:Key="FantasyFlatButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="Padding" Value="14,8" />
+        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0" />
+    </Style>
+
+    <Style x:Key="FantasyIconButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignIconButton}">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="MinWidth" Value="40" />
+        <Setter Property="MinHeight" Value="40" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="FantasySidebarButton" TargetType="Button" BasedOn="{StaticResource FantasyFlatButton}">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="MinHeight" Value="48" />
+        <Setter Property="Padding" Value="14,12" />
         <Setter Property="Margin" Value="4,2" />
         <Setter Property="Foreground" Value="{StaticResource FantasyParchmentBrush}" />
+    </Style>
+
+    <!-- Карточки выбора в мастере создания — без фиксированной высоты кнопки -->
+    <Style x:Key="FantasySelectionCardButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Cursor" Value="Hand" />
     </Style>
 
 </ResourceDictionary>

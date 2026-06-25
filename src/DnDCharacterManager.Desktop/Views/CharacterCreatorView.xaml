@@ -121,16 +121,23 @@
                                  Width="300" Margin="0,0,8,0"
                                  materialDesign:HintAssist.Hint="Название предмета" />
                         <Button Content="Добавить" Command="{Binding AddEquipmentCommand}"
-                                Style="{StaticResource MaterialDesignRaisedButton}" />
+                                Style="{StaticResource FantasyRaisedButton}" />
                     </StackPanel>
                     <ListBox ItemsSource="{Binding EquipmentItems}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Padding" Value="4,2" />
+                                <Setter Property="MinHeight" Value="44" />
+                                <Setter Property="ClipToBounds" Value="False" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <DockPanel>
                                     <Button DockPanel.Dock="Right" Content="✕"
                                             Command="{Binding DataContext.RemoveEquipmentCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                             CommandParameter="{Binding}"
-                                            Style="{StaticResource MaterialDesignIconButton}" />
+                                            Style="{StaticResource FantasyIconButton}" />
                                     <TextBlock Text="{Binding}" VerticalAlignment="Center" />
                                 </DockPanel>
                             </DataTemplate>
@@ -150,7 +157,7 @@
                         </Style>
                     </StackPanel.Style>
                     <Button Content="Стандартный массив" Command="{Binding ApplyStandardArrayCommand}"
-                            Style="{StaticResource MaterialDesignOutlinedButton}" Margin="0,0,0,12" />
+                            Style="{StaticResource FantasyOutlinedButton}" Margin="0,0,0,12" />
                     <ItemsControl ItemsSource="{Binding AbilityEntries}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -198,18 +205,18 @@
                         </Style>
                     </StackPanel.Style>
                     <Button Content="Выбрать портрет" Command="{Binding BrowsePortraitCommand}"
-                            Style="{StaticResource MaterialDesignOutlinedButton}" Margin="0,0,0,12" />
+                            Style="{StaticResource FantasyOutlinedButton}" Margin="0,0,0,12" />
                     <TextBlock Text="{Binding PortraitPath}" Foreground="{StaticResource FantasyTextMutedBrush}" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,8" ClipToBounds="False">
             <Button Content="Назад" Command="{Binding PreviousStepCommand}"
-                    Style="{StaticResource MaterialDesignOutlinedButton}" Margin="0,0,8,0" />
+                    Style="{StaticResource FantasyOutlinedButton}" Margin="0,0,8,0" />
             <Button Command="{Binding NextStepCommand}" Margin="0,0,8,0">
                 <Button.Style>
-                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                    <Style TargetType="Button" BasedOn="{StaticResource FantasyRaisedButton}">
                         <Setter Property="Content" Value="Далее" />
                         <Setter Property="Visibility" Value="Visible" />
                         <Style.Triggers>
@@ -222,7 +229,7 @@
             </Button>
             <Button Command="{Binding SaveCharacterCommand}">
                 <Button.Style>
-                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                    <Style TargetType="Button" BasedOn="{StaticResource FantasyRaisedButton}">
                         <Setter Property="Content" Value="Создать персонажа" />
                         <Setter Property="Visibility" Value="Collapsed" />
                         <Style.Triggers>

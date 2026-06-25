@@ -6,7 +6,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
 GITHUB_USER="${GITHUB_USER:-SharikBot}"
-REPO_NAME="${REPO_NAME:-DnDCharacterManager}"
+REPO_NAME="${REPO_NAME:-DnD_Hub}"
 REMOTE_URL="https://github.com/${GITHUB_USER}/${REPO_NAME}.git"
 
 echo "==> DnD Character Manager — push to GitHub"

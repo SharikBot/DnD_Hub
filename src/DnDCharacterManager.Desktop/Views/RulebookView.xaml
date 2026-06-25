@@ -29,7 +29,7 @@
                       Width="180" Margin="0,0,8,0"
                       materialDesign:HintAssist.Hint="Категория" />
             <Button Content="Найти" Command="{Binding SearchCommand}"
-                    Style="{StaticResource MaterialDesignRaisedButton}" />
+                    Style="{StaticResource FantasyRaisedButton}" />
         </StackPanel>
 
         <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource FantasyCardBorder}" Margin="0,0,8,0">
@@ -37,12 +37,22 @@
                 <TextBlock Text="Глоссарий" FontWeight="SemiBold" Margin="0,0,0,8"
                            Foreground="{StaticResource FantasyAccentBrush}" />
                 <ListBox ItemsSource="{Binding GlossaryTerms}" BorderThickness="0">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="MinHeight" Value="40" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="ClipToBounds" Value="False" />
+                            <Setter Property="Background" Value="Transparent" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button Content="{Binding Term}"
                                     Command="{Binding DataContext.SelectGlossaryTermCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                     CommandParameter="{Binding}"
-                                    Style="{StaticResource MaterialDesignFlatButton}"
+                                    Style="{StaticResource FantasyFlatButton}"
+                                    HorizontalAlignment="Stretch"
                                     HorizontalContentAlignment="Left" />
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -91,8 +101,9 @@
                                                                 <Button Content="{Binding Text}"
                                                                         Command="{Binding DataContext.OpenLinkedTermCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                                         CommandParameter="{Binding LinkedTerm}"
-                                                                        Style="{StaticResource MaterialDesignFlatButton}"
-                                                                        Padding="0" Margin="0"
+                                                                        Style="{StaticResource FantasyFlatButton}"
+                                                                        Margin="0,0,2,0"
+                                                                        Padding="4,2"
                                                                         FontWeight="SemiBold"
                                                                         Foreground="{StaticResource FantasyAccentBrush}" />
                                                             </Setter.Value>

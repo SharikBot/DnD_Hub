@@ -13,16 +13,17 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,16">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,16" VerticalAlignment="Center">
             <Button Content="← Назад" Command="{Binding GoBackCommand}"
-                    Style="{StaticResource MaterialDesignFlatButton}" Margin="0,0,8,0" />
+                    Style="{StaticResource FantasyFlatButton}" Margin="0,0,8,0" VerticalAlignment="Center" />
             <Button Content="Сохранить" Command="{Binding SaveSheetCommand}"
-                    Style="{StaticResource MaterialDesignOutlinedButton}" Margin="0,0,8,0" />
+                    Style="{StaticResource FantasyOutlinedButton}" Margin="0,0,8,0" VerticalAlignment="Center" />
             <Button Content="Предпросмотр PDF" Command="{Binding PreviewPdfCommand}"
-                    Style="{StaticResource MaterialDesignOutlinedButton}" Margin="0,0,8,0" />
+                    Style="{StaticResource FantasyOutlinedButton}" Margin="0,0,8,0" VerticalAlignment="Center" />
             <Button Content="Скачать PDF" Command="{Binding DownloadPdfCommand}"
-                    Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,16,0" />
-            <TextBlock Text="{Binding EditableName}" Style="{StaticResource FantasyPageTitle}" VerticalAlignment="Center" />
+                    Style="{StaticResource FantasyRaisedButton}" Margin="0,0,16,0" VerticalAlignment="Center" />
+            <TextBlock Text="{Binding EditableName}" Style="{StaticResource FantasyPageTitle}"
+                       VerticalAlignment="Center" Margin="0" />
         </StackPanel>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
@@ -62,14 +63,14 @@
                             <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
                                 <TextBlock Text="Хиты: " VerticalAlignment="Center" />
                                 <Button Content="-" Command="{Binding AdjustHpCommand}" CommandParameter="-1"
-                                        Style="{StaticResource MaterialDesignIconButton}" />
+                                        Style="{StaticResource FantasyIconButton}" />
                                 <TextBlock Text="{Binding EditableCurrentHp}" Width="40"
                                            TextAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
                                 <TextBlock VerticalAlignment="Center" Foreground="{StaticResource FantasyTextMutedBrush}">
                                     <Run Text="/" /><Run Text="{Binding Character.MaxHitPoints}" />
                                 </TextBlock>
                                 <Button Content="+" Command="{Binding AdjustHpCommand}" CommandParameter="1"
-                                        Style="{StaticResource MaterialDesignIconButton}" />
+                                        Style="{StaticResource FantasyIconButton}" />
                             </StackPanel>
                         </StackPanel>
                     </Border>

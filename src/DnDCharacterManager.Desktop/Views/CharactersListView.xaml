@@ -21,10 +21,11 @@
                      Width="280" Margin="0,0,8,0"
                      materialDesign:HintAssist.Hint="Поиск по имени" />
             <Button Content="Обновить" Command="{Binding LoadCharactersCommand}"
-                    Style="{StaticResource MaterialDesignRaisedButton}" />
+                    Style="{StaticResource FantasyRaisedButton}" />
         </StackPanel>
 
         <DataGrid Grid.Row="2"
+                  RowHeight="52"
                   ItemsSource="{Binding Characters}"
                   SelectedItem="{Binding SelectedCharacter}"
                   AutoGenerateColumns="False"
@@ -38,18 +39,18 @@
                 <DataGridTextColumn Header="Раса" Binding="{Binding RaceName}" Width="120" />
                 <DataGridTextColumn Header="Класс" Binding="{Binding ClassName}" Width="120" />
                 <DataGridTextColumn Header="Обновлён" Binding="{Binding UpdatedAt, StringFormat=dd.MM.yyyy}" Width="100" />
-                <DataGridTemplateColumn Header="Действия" Width="160">
+                <DataGridTemplateColumn Header="Действия" Width="180">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Открыть"
                                         Command="{Binding DataContext.OpenCharacterCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                         CommandParameter="{Binding}"
-                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                        Style="{StaticResource FantasyFlatButton}" />
                                 <Button Content="Удалить"
                                         Command="{Binding DataContext.DeleteCharacterCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                         CommandParameter="{Binding}"
-                                        Style="{StaticResource MaterialDesignFlatButton}"
+                                        Style="{StaticResource FantasyFlatButton}"
                                         Foreground="IndianRed" />
                             </StackPanel>
                         </DataTemplate>

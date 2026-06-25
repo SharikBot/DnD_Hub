@@ -29,7 +29,7 @@
                      VerticalScrollBarVisibility="Auto"
                      materialDesign:HintAssist.Hint="Опишите, что нужно сгенерировать..." />
             <Button Content="Сгенерировать" Command="{Binding GenerateCommand}"
-                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Style="{StaticResource FantasyRaisedButton}"
                     Margin="0,12,0,0" HorizontalAlignment="Left" />
         </StackPanel>
 
